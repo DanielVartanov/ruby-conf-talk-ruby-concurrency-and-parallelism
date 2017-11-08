@@ -1,21 +1,11 @@
-#shwmae,pawb!dyma wy wystyr
-
 @bank_account = 0
-
-def read
-  @bank_account
-end
-
-def write(value)
-  @bank_account = value
-end
 
 100.times.map do
   Thread.new do
     10_000.times do
-      value = read()
+      value = @bank_account
       value = value + 1
-      write(value)
+      @bank_account = value
     end
   end
 end.each(&:join)

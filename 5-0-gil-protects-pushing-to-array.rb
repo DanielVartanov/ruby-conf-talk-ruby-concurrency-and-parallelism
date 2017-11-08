@@ -2,11 +2,11 @@
 
 100.times.map do
   Thread.new do
-    1000.times do
-      @array.push(0)
+    10_000.times do |i|
+      @array.push(i)
     end
   end
 end.each(&:join)
 
 puts @array.size
-puts (@array.size == 100_000) ? 'CORRECT' : 'ERROR'
+puts (@array.size == 1_000_000) ? 'CORRECT' : 'ERROR'

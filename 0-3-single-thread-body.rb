@@ -1,3 +1,1 @@
-value = @bank_account
-value = value + 1
-@bank_account = value
+@bank_account = @bank_account + 1

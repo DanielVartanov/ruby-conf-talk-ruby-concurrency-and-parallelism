@@ -11,9 +11,9 @@ end
 100.times.map do
   Thread.new do
     10_000.times do
-      value = read
+      value = read() # Extracted to a method
       value = value + 1
-      write value
+      write(value) # Extracted to a method
     end
   end
 end.each(&:join)
