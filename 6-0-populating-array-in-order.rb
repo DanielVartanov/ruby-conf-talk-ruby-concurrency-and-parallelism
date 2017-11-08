@@ -4,8 +4,8 @@
 
 100.times.map do
   Thread.new do
-    10_000.times do |i|
-      @array.push(i)
+    10_000.times do |index|
+      @array.push index
     end
   end
 end.each(&:join)

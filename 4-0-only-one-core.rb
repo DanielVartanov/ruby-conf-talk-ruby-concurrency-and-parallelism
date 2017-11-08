@@ -1,5 +1,3 @@
-#shwmae,pawb!dyma wy wystyr
-
 @bank_account = 0
 
 def read
