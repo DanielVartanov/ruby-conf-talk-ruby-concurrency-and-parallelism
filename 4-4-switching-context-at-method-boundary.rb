@@ -1,5 +1,7 @@
 @bank_account = 0
 
+#_from_bank_account
+
 def read
   @bank_account
 end
@@ -12,7 +14,9 @@ end
   Thread.new do
     10_000.times do
       value = read # <-- context switching
-      value = value + 1
+      # then context gets switches
+      # and then they save the same valye incrementing the bank account only once instead of twice
+      # now imagine a hundred threads do the same      value = value + 1
       write value # <-- context switching
     end
   end

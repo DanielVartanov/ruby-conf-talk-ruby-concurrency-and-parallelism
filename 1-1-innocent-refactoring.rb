@@ -20,3 +20,7 @@ end.each(&:join)
 
 puts @bank_account
 puts (@bank_account == 1_000_000) ? 'CORRECT' : 'ERROR'
+
+
+
+# Refactoring by definition is change the code in a way that it does not change externally observable behaviour of that code

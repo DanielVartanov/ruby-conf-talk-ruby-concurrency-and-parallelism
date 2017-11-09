@@ -1,5 +1,7 @@
 @bank_account = 0
 
+# from_a_bank_accoun too
+
 def read
   @bank_account
 end

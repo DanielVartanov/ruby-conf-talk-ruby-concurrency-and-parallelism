@@ -18,3 +18,8 @@ end
 
 puts 'array size is ' + (@array.size == 1_000_000 ? 'CORRECT' : 'WRONG')
 puts 'array contents are ' + (contents_correct ? 'CORRECT' : 'WRONG')  # <-- Also check contents!
+
+# Never rely on GIL. Just never.
+
+# you may think that okay, there is a method call and context switching is happening there
+# so if you write code delinerately avoiding method calls, your code will be threadsafe

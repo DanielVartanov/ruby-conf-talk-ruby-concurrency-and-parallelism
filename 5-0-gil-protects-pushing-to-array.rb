@@ -12,3 +12,7 @@ end.each(&:join)
 
 puts @array.size
 puts (@array.size == 1_000_000) ? 'CORRECT' : 'ERROR'
+
+
+# so, basically saying, GIL protected the code of MRI developers, not your code
+# To illustrate that...
