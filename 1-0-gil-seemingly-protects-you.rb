@@ -10,5 +10,8 @@
   end
 end.each(&:join)
 
-puts @bank_account
-puts (@bank_account == 1_000_000) ? 'CORRECT' : 'ERROR'
+print @bank_account
+puts (@bank_account == 1_000_000) ? ' CORRECT' : ' ERROR'
+
+
+# So back to our example when a hundred threads are adding to a bank account 10 thousand times each
