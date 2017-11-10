@@ -1,26 +1,22 @@
 @bank_account = 0
 
-#_from_bank_account
-
-def read
+def read_from_bank_account
   @bank_account
 end
 
-def write(value)
+def write_to_bank_account(value)
   @bank_account = value
 end
 
 100.times.map do
   Thread.new do
     10_000.times do
-      value = read # <-- context switching
-      # then context gets switches
-      # and then they save the same valye incrementing the bank account only once instead of twice
-      # now imagine a hundred threads do the same      value = value + 1
-      write value # <-- context switching
+      value = read_from_bank_account() # Extracted to a method
+      value = value + 1
+      write_to_bank_account(value) # Extracted to a method
     end
   end
 end.each(&:join)
 
-puts @bank_account
-puts (@bank_account == 1_000_000) ? 'CORRECT' : 'ERROR'
+print @bank_account
+puts (@bank_account == 1_000_000) ? "\e[32m CORRECT \e[0m" : "\e[31m ERROR \e[0m"

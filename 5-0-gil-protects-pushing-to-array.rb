@@ -10,9 +10,5 @@
   end
 end.each(&:join)
 
-puts @array.size
-puts (@array.size == 1_000_000) ? 'CORRECT' : 'ERROR'
-
-
-# so, basically saying, GIL protected the code of MRI developers, not your code
-# To illustrate that...
+print @array.size
+puts (@array.size == 1_000_000) ? "\e[32m CORRECT \e[0m" : "\e[31m ERROR \e[0m"

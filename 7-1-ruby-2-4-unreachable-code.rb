@@ -1,10 +1,14 @@
 @bank_account = 0
 
+def pretend_to_calculate_false
+  false
+end
+
 100.times.map do
   Thread.new do
     10_000.times do
       value = @bank_account
-      value = value + 1
+      value = value + 1 unless pretend_to_calculate_false
       @bank_account = value
     end
   end
