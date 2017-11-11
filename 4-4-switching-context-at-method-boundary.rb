@@ -11,9 +11,9 @@ end
 100.times.map do
   Thread.new do
     10_000.times do
-      value = read_from_bank_account() # Extracted to a method
+      value = read_from_bank_account() # <-- method call
       value = value + 1
-      write_to_bank_account(value) # Extracted to a method
+      write_to_bank_account(value) # <-- method call
     end
   end
 end.each(&:join)
