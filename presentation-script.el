@@ -21,6 +21,8 @@
 
 ;; (demo-it-start-shell)
 
+(eimp-mode 1)
+
 (defun rubyconf/show-image-slide (image-file)
   (centered-window-mode -1)
   (find-file image-file)
