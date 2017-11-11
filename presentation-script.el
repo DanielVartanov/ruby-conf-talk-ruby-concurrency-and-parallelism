@@ -40,8 +40,10 @@
 (defun rubyconf/setup-shell()
   (demo-it-start-shell)
   (demo-it-run-in-shell "/bin/bash --login" nil :instant)
+  (sit-for 3.5)
   (demo-it-run-in-shell "rvm 2.3" nil :instant)
   (demo-it-run-in-shell "PS1='$ '" nil :instant)
+  (comint-clear-buffer)
   )
 
 (defun rubyconf/run-shell()
