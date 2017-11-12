@@ -6,20 +6,10 @@
 ;; make centered-window center out even when split into too (I guess,
 ;; change the minimum window width threshold)
 
-(defvar zenburn-override-colors-alist
-  '(("zenburn-bg+05" . "#282828")
-    ("zenburn-bg+1"  . "#2F2F2F")
-    ("zenburn-bg+2"  . "#3F3F3F")
-    ("zenburn-bg+3"  . "#4F4F4F")))
-
-(load-theme 'zenburn t)
-
 (setq demo-it--shell-or-eshell :shell)
 (setq demo-it--insert-text-speed :faster)
 (setq demo-it--keymap-mode-style :advanced-mode)
 (setq demo-it--open-windows-size 100)
-
-;; (demo-it-start-shell)
 
 (eimp-mode 1)
 
