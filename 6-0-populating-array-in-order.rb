@@ -20,4 +20,4 @@ contents_correct = 1_000_000.times.all? do |i|
   @array[i] == expected[i]
 end
 
-puts 'array contents are ' + (contents_correct ? "\e[32m CORRECT \e[0m" : "\e[31m ERROR \e[0m")
+puts 'array contents are ' + (contents_correct ? "\e[32m CORRECT \e[0m" : "\e[31m WRONG \e[0m")

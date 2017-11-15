@@ -11,15 +11,15 @@
 (setq demo-it--keymap-mode-style :advanced-mode)
 (setq demo-it--open-windows-size 100)
 
-(eimp-mode 1)
-
 (defun rubyconf/show-image-slide (image-file)
   (centered-window-mode -1)
+  (eimp-mode +1)
   (find-file image-file)
   (delete-other-windows)
   (fringe-mode '(0 . 0))
   (demo-it-hide-mode-line)
   (eimp-fit-image-to-whole-window)
+  (eimp-mode -1)
   )
 
 (defun rubyconf/show-source-code-file (source-code-file)
@@ -66,9 +66,13 @@
 
                 (rubyconf/show-image-slide "title.png")
 
+                (rubyconf/show-image-slide "wedding-cake-ruby.png")
+
+                (rubyconf/show-image-slide "team-veeqo.png")
+
                 (rubyconf/show-source-code-file "bank-account-first-10-000.rb")
-                (rubyconf/show-source-code-file "bank-account-100-threads.rb")
-                (rubyconf/show-source-code-file "simplest-race-condition.rb")
+                (rubyconf/show-source-code-file "bank-account-first-10-000-repeat-100-times.rb")
+                (rubyconf/show-source-code-file "0-add-check-in-the-end.rb")
                 (rubyconf/show-source-code-file "simplest-race-condition.rb")
                 (rubyconf/run-file-with-jruby "simplest-race-condition.rb")
 
@@ -82,34 +86,37 @@
                 (rubyconf/show-source-code-file "1-1-innocent-refactoring.rb")
                 (rubyconf/run-file-with-mri "1-1-innocent-refactoring.rb")
 
+                (rubyconf/show-source-code-file "4-0-only-one-core.rb")
+                (rubyconf/run-file-with-mri "4-0-only-one-core.rb")
+                (demo-it-run-in-shell "sudo ./turn-off-all-but-one-cores")
+                (demo-it-run-in-shell "nproc")
+                (rubyconf/run-file-in-opened-shell "ruby" "4-0-only-one-core.rb")
+                (demo-it-run-in-shell "sudo ./turn-on-all-cores && nproc")
+
+                (rubyconf/show-image-slide "4-1-parallelism-vs-concurrency.png")
+
+
+                (rubyconf/show-image-slide "3-1-two-threads.png")
+                (rubyconf/show-image-slide "3-2-two-threads-serially.png")
+
+                (rubyconf/show-image-slide "4-3-concurrent-and-parallel.png")
+
+                (rubyconf/show-image-slide "4-2-concurrent-but-not-parallel.png")
+
+                (rubyconf/show-source-code-file "4-4-switching-context-at-method-boundary.rb")
+
+                (rubyconf/show-source-code-file "5-0-gil-protects-pushing-to-array.rb")
+                (rubyconf/run-file-with-mri "5-0-gil-protects-pushing-to-array.rb")
+                (rubyconf/run-file-in-opened-shell "jruby" "5-0-gil-protects-pushing-to-array.rb")
+                (rubyconf/show-source-code-file "6-0-populating-array-in-order.rb")
+                (rubyconf/run-file-with-mri "6-0-populating-array-in-order.rb")
+
                 (rubyconf/show-image-slide "veeqo-integrations.png")
                 (rubyconf/show-image-slide "sidekiq-to-shopify-api.png")
                 (rubyconf/show-image-slide "sidekiq-shopify_api-activeresource-shopify-api.png")
                 (rubyconf/show-image-slide "grapes-and-olives.png")
 
-                (rubyconf/show-image-slide "gil-allows-only-one-thread-misleading.png")
-                (rubyconf/show-image-slide "3-1-two-threads.png")
-                (rubyconf/show-image-slide "3-2-two-threads-serially.png")
 
-                (rubyconf/show-image-slide "4-1-parallelism-vs-concurrency.png")
-                (rubyconf/show-image-slide "4-2-context-switching.png")
-                (rubyconf/show-image-slide "4-2-concurrent-but-not-parallel.png")
-                (rubyconf/show-image-slide "4-3-concurrent-and-parallel.png")
-                (rubyconf/show-source-code-file "4-4-switching-context-at-method-boundary.rb")
-
-                (rubyconf/show-source-code-file "4-0-only-one-core.rb")
-                (rubyconf/run-file-with-mri "4-0-only-one-core.rb")
-                (demo-it-run-in-shell "sudo ./turn-off-all-but-one-cores")
-                (demo-it-run-in-shell "cat /proc/cpuinfo")
-                (rubyconf/run-file-in-opened-shell "ruby" "4-0-only-one-core.rb")
-                (demo-it-run-in-shell "sudo ./turn-on-all-cores")
-
-                (rubyconf/show-source-code-file "5-0-gil-protects-pushing-to-array.rb")
-                (rubyconf/run-file-with-mri "5-0-gil-protects-pushing-to-array.rb")
-                (rubyconf/run-file-in-opened-shell "jruby" "5-0-gil-protects-pushing-to-array.rb")
-
-                (rubyconf/show-source-code-file "6-0-populating-array-in-order.rb")
-                (rubyconf/run-file-with-mri "6-0-populating-array-in-order.rb")
 
                 (rubyconf/show-source-code-file "7-0-unpredictable-context-switching.rb")
                 (rubyconf/run-file-with-mri "7-0-unpredictable-context-switching.rb")
@@ -126,6 +133,8 @@
                 (rubyconf/show-source-code-file "7-2-unpredictable-context-switching-unless-false.rb")
                 (rubyconf/show-source-code-file "7-3-ruby-2-4-pretend-to-calculate-false.rb")
                 (rubyconf/run-file-with-mri "7-3-ruby-2-4-pretend-to-calculate-false.rb")
+
+                (rubyconf/show-image-slide "gil-allows-only-one-thread-misleading.png")
 
                 (rubyconf/show-image-slide "tl-dr.png")
 )
