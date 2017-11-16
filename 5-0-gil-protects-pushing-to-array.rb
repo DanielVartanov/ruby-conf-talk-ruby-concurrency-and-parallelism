@@ -11,4 +11,6 @@
 end.each(&:join)
 
 print @array.size
-puts (@array.size == 1_000_000) ? "\e[32m CORRECT \e[0m" : "\e[31m ERROR \e[0m"
+puts (@array.size == 1_000_000) ?
+       "\e[32m CORRECT \e[0m" :
+       "\e[31m ERROR \e[0m"

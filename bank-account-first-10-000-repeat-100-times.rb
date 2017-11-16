@@ -1,7 +1,6 @@
 
 
 
-
 @bank_account = 0
 
 100.times do

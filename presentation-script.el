@@ -21,19 +21,28 @@
   (eimp-mode -1)
   )
 
-(defun rubyconf/show-source-code-file (source-code-file)
+(defun rubyconf/show-source-code-file (source-code-file &optional scale)
+  (unless scale (setq scale 5))
+
   (centered-window-mode +1)
   (find-file source-code-file)
   (demo-it-highlight-dwim :line 1 2)
   (fancy-widen)
+  (text-scale-set scale)
   (goto-char (point-max))
   (delete-other-windows)
+  (message "")
   )
 
 (defun rubyconf/show-source-code-file-and-narrow (source-code-file line-start line-end)
   (rubyconf/show-source-code-file source-code-file)
   (demo-it-highlight-dwim :line line-start line-end)
 )
+
+(defun rubyconf/show-source-code-file-and-warn-on-narrow (source-code-file)
+  (rubyconf/show-source-code-file source-code-file)
+  (message "narrow")
+  )
 
 (defun rubyconf/setup-shell()
   (demo-it-start-shell)
@@ -72,30 +81,29 @@
                 (show-paren-mode -1)
 
                 (rubyconf/show-image-slide "title.png")
-
                 (rubyconf/show-image-slide "wedding-cake-ruby.png")
-
                 (rubyconf/show-image-slide "team-veeqo.png")
 
                 (rubyconf/show-source-code-file "bank-account-first-10-000.rb")
                 (rubyconf/show-source-code-file "bank-account-first-10-000-repeat-100-times.rb")
-                (rubyconf/show-source-code-file "0-add-check-in-the-end.rb")
+                (rubyconf/show-source-code-file-and-warn-on-narrow "0-add-check-in-the-end.rb")
+
                 (demo-it-highlight-dwim :line 6 11)
-                (rubyconf/show-source-code-file-and-narrow "simplest-race-condition.rb" 6 11)
+                (rubyconf/show-source-code-file-and-narrow "simplest-race-condition.rb" 6 12)
                 (rubyconf/show-source-code-file "simplest-race-condition.rb")
                 (rubyconf/run-file-with-jruby "simplest-race-condition.rb")
 
-                (rubyconf/show-source-code-file "0-3-single-thread-body.rb")
-                (rubyconf/show-source-code-file "0-4-expand-thread-body.rb")
+                (rubyconf/show-source-code-file "0-3-single-thread-body.rb" 7)
+                (rubyconf/show-source-code-file "0-4-expand-thread-body.rb" 7)
                 (split-window-horizontally)
                 (find-file-other-window "0-4-expand-thread-body.rb")
 
-                (rubyconf/show-source-code-file "1-0-gil-seemingly-protects-you.rb")
+                (rubyconf/show-source-code-file "1-0-gil-seemingly-protects-you.rb" 5)
                 (rubyconf/run-file-with-mri "1-0-gil-seemingly-protects-you.rb")
-                (rubyconf/show-source-code-file "1-1-innocent-refactoring.rb")
+                (rubyconf/show-source-code-file "1-1-innocent-refactoring.rb" 3)
                 (rubyconf/run-file-with-mri "1-1-innocent-refactoring.rb")
 
-                (rubyconf/show-source-code-file "4-0-only-one-core.rb")
+                (rubyconf/show-source-code-file "4-0-only-one-core.rb" 3)
                 (rubyconf/run-file-with-mri "4-0-only-one-core.rb")
                 (demo-it-run-in-shell "sudo ./turn-off-all-but-one-cores")
                 (demo-it-run-in-shell "nproc")
@@ -106,19 +114,19 @@
 
                 (rubyconf/show-image-slide "two-threads.png")
                 (rubyconf/show-image-slide "serial-threads.png")
-                (rubyconf/show-image-slide "serial-threads-this-is-not-the-case.png")
                 (rubyconf/show-image-slide "concurrent-and-parallel.png")
                 (rubyconf/show-image-slide "concurrent-but-not-parallel.png")
 
                 (rubyconf/show-image-slide "the-moment-where-mri-switched-between-threads.png")
-                (rubyconf/show-source-code-file "4-4-switching-context-at-method-boundary.rb")
+                (rubyconf/show-source-code-file "4-4-switching-context-at-method-boundary.rb" 3)
 
                 (rubyconf/show-source-code-file "5-0-gil-protects-pushing-to-array.rb")
                 (rubyconf/run-file-with-mri "5-0-gil-protects-pushing-to-array.rb")
                 (rubyconf/run-file-in-opened-shell "jruby" "5-0-gil-protects-pushing-to-array.rb")
-                (rubyconf/show-image-slide "gil-is-here-not-for-your-convenience.png")
-                (rubyconf/show-source-code-file "6-0-populating-array-in-order.rb")
+                (rubyconf/show-source-code-file "6-0-populating-array-in-order.rb" 3)
                 (rubyconf/run-file-with-mri "6-0-populating-array-in-order.rb")
+                (demo-it-highlight-dwim :line 6 11)
+                (rubyconf/show-image-slide "gil-is-here-not-for-your-convenience.png")
 
                 (rubyconf/show-image-slide "veeqo-integrations.png")
                 (rubyconf/show-image-slide "sidekiq-to-shopify-api.png")
@@ -135,12 +143,12 @@
                 (rubyconf/show-source-code-file "7-1-unpredictable-context-switching-if-true.rb")
                 (rubyconf/show-source-code-file "7-2-unpredictable-context-switching-unless-false.rb")
                 (rubyconf/run-file-with-mri "7-2-unpredictable-context-switching-unless-false.rb")
-                (rubyconf/show-image-slide "assume-context-can-be-switched-at-any-line.png")
                 (demo-it-run-in-shell "ruby --version")
                 (demo-it-run-in-shell "rvm 2.4")
                 (rubyconf/run-file-in-opened-shell "ruby" "7-2-unpredictable-context-switching-unless-false.rb")
                 (rubyconf/show-image-slide "turning-commit.png")
                 (rubyconf/show-source-code-file "7-2-unpredictable-context-switching-unless-false.rb")
+                (rubyconf/show-image-slide "assume-context-can-be-switched-at-any-line.png")
 
                 (rubyconf/show-source-code-file "7-3-ruby-2-4-pretend-to-calculate-false.rb")
                 (rubyconf/run-file-with-mri "7-3-ruby-2-4-pretend-to-calculate-false.rb")
