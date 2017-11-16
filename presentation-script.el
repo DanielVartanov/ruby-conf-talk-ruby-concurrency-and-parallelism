@@ -135,11 +135,13 @@
                 (rubyconf/show-source-code-file "7-1-unpredictable-context-switching-if-true.rb")
                 (rubyconf/show-source-code-file "7-2-unpredictable-context-switching-unless-false.rb")
                 (rubyconf/run-file-with-mri "7-2-unpredictable-context-switching-unless-false.rb")
+                (rubyconf/show-image-slide "assume-context-can-be-switched-at-any-line.png")
                 (demo-it-run-in-shell "ruby --version")
                 (demo-it-run-in-shell "rvm 2.4")
                 (rubyconf/run-file-in-opened-shell "ruby" "7-2-unpredictable-context-switching-unless-false.rb")
                 (rubyconf/show-image-slide "turning-commit.png")
                 (rubyconf/show-source-code-file "7-2-unpredictable-context-switching-unless-false.rb")
+
                 (rubyconf/show-source-code-file "7-3-ruby-2-4-pretend-to-calculate-false.rb")
                 (rubyconf/run-file-with-mri "7-3-ruby-2-4-pretend-to-calculate-false.rb")
 
