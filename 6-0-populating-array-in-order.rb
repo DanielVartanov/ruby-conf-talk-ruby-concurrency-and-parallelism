@@ -11,8 +11,8 @@ end.each(&:join)
 
 print 'array size is '
 puts @array.size == 1_000_000 ?
-  "\e[32m CORRECT \e[0m" :
-  "\e[31m ERROR \e[0m"
+       "\e[32m CORRECT \e[0m" :
+       "\e[31m ERROR \e[0m"
 
 # Also check contents!
 expected = (0..10_000).to_a * 100

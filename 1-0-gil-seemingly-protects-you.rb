@@ -11,6 +11,6 @@
 end.each(&:join)
 
 print @bank_account
-puts (@bank_account == 1_000_000) ?
+puts @bank_account == 1_000_000 ?
        "\e[32m CORRECT \e[0m" :
        "\e[31m ERROR \e[0m"
