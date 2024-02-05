@@ -88,13 +88,19 @@
                 (show-paren-mode -1)
 
                 ;; -- 1 Simplest race condition --
-                (rubyconf/show-source-code-file "bank-account-first-10-000.rb")
-                (rubyconf/show-source-code-file "bank-account-first-10-000-repeat-100-times.rb")
+                (rubyconf/show-source-code-file "bank-account-first-100-000.rb")
+                (rubyconf/show-source-code-file "bank-account-first-100-000-repeat-100-times.rb")
                 (rubyconf/show-source-code-file-and-warn-on-narrow "0-add-check-in-the-end.rb")
                 (demo-it-highlight-dwim :line 6 11)
                 (rubyconf/show-source-code-file-and-narrow "simplest-race-condition.rb" 6 12)
                 (rubyconf/show-source-code-file "simplest-race-condition.rb")
                 (rubyconf/run-file-with-jruby "simplest-race-condition.rb")
+
+                ;; extract to "restore default ruby"
+                (demo-it-run-in-shell "rvm 3.2")
+                (sit-for 0.3)
+                (comint-clear-buffer)
+
                 (rubyconf/show-source-code-file-and-narrow "simplest-race-condition.rb" 9 9)
                 (rubyconf/show-source-code-file "0-3-single-thread-body.rb" 7)
                 (rubyconf/show-source-code-file "0-4-expand-thread-body.rb" 7)
@@ -138,9 +144,12 @@
 
                 ;; -- 5 GIL protects internal MRI data --
                 (rubyconf/show-source-code-file-and-warn-on-narrow "5-0-gil-protects-pushing-to-array.rb")
-                (demo-it-highlight-dwim :line 8 8)
+                (demo-it-highlight-dwim :line 6 6)
                 (rubyconf/run-file-with-mri "5-0-gil-protects-pushing-to-array.rb")
-                (rubyconf/run-file-in-opened-shell "jruby" "5-0-gil-protects-pushing-to-array.rb")
+                (rubyconf/run-file-with-jruby "5-0-gil-protects-pushing-to-array.rb")
+
+                (demo-it-run-in-shell "rvm 3.2")
+
                 (rubyconf/show-image-slide "gil-is-here-not-for-your-convenience.png")
                 (rubyconf/show-source-code-file-and-warn-on-narrow "5-1-populating-array-in-order.rb" 2)
                 (demo-it-highlight-dwim :line 17 27)
@@ -166,13 +175,6 @@
                 (rubyconf/show-source-code-file-and-narrow "7-1-unpredictable-context-switching-if-true.rb" 7 7)
                 (rubyconf/show-source-code-file-and-narrow "7-2-unpredictable-context-switching-unless-false.rb" 7 7)
                 (rubyconf/run-file-with-mri "7-2-unpredictable-context-switching-unless-false.rb")
-                (demo-it-run-in-shell "ruby --version")
-                (demo-it-run-in-shell "rvm 2.4")
-                (rubyconf/run-file-in-opened-shell "ruby" "7-2-unpredictable-context-switching-unless-false.rb")
-                (rubyconf/show-image-slide "turning-commit.png")
-                (rubyconf/show-source-code-file-and-narrow "7-2-unpredictable-context-switching-unless-false.rb" 7 7)
-                (rubyconf/show-source-code-file-and-narrow "7-3-ruby-2-4-pretend-to-calculate-false.rb" 7 8)
-                (rubyconf/run-file-with-mri "7-3-ruby-2-4-pretend-to-calculate-false.rb")
                 (rubyconf/show-image-slide "assume-context-can-be-switched-at-any-line.png")
 
                 ;; -- 8 What should you do, Rails 4 and Guilds --

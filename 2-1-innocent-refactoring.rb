@@ -8,9 +8,9 @@ def write_to_bank_account(value)
   @bank_account = value
 end
 
-1000.times.map do
+100.times.map do
   Thread.new do
-    10_000.times do
+    100_000.times do
       value = read_from_bank_account() # <--
       value = value + 1
       write_to_bank_account(value) # <--

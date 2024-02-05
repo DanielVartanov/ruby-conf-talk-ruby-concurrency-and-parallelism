@@ -1,8 +1,8 @@
 @bank_account = 0
 
-1000.times.map do
+100.times.map do
   Thread.new do
-    10_000.times do
+    100_000.times do
       value = @bank_account
       value = value + 1
       @bank_account = value
