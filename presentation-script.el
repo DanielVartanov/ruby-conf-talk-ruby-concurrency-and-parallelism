@@ -75,17 +75,17 @@
 )
 
 (defun rubyconf/run-file-with-jruby (source-code-file)
-  (rubyconf/run-file-in-shell "jruby" source-code-file)
+  (demo-it-start-shell)
+  (demo-it-run-in-shell "rvm jruby-9.1")
+  (comint-clear-buffer)
+  (sit-for 0.3)
+  (comint-clear-buffer)
+  (demo-it-run-in-shell (concat "jruby " source-code-file))
 )
 
 (demo-it-create :single-window
                 (rubyconf/setup-shell)
                 (show-paren-mode -1)
-
-                ;; -- 0 Introduction --
-                (rubyconf/show-image-slide "title.png")
-                (rubyconf/show-image-slide "wedding-cake-ruby.png")
-                (rubyconf/show-image-slide "team-veeqo.png")
 
                 ;; -- 1 Simplest race condition --
                 (rubyconf/show-source-code-file "bank-account-first-10-000.rb")
