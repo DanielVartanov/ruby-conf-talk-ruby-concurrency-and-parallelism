@@ -189,6 +189,10 @@
                 ;; -- 9 Take home slides
                 (rubyconf/show-image-slide "there-will-never-be-a-magic-bullet.png")
 
+
+                ;; -- Contact details
+                (rubyconf/show-image-slide "contact.png")
+
                 )
 
 (demo-it-start)
