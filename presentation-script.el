@@ -106,6 +106,9 @@
                 (rubyconf/setup-shell)
                 (show-paren-mode -1)
 
+                ;; - Title
+                (rubyconf/show-image-slide "title.png")
+
                 ;; -- 1 Simplest race condition --
                 (rubyconf/show-source-code-file "bank-account-first-100-000.rb")
                 (rubyconf/show-source-code-file "bank-account-first-100-000-repeat-100-times.rb")
