@@ -74,21 +74,32 @@
   (rubyconf/run-file-in-shell "ruby" source-code-file)
 )
 
-(defun rubyconf/run-file-with-jruby (source-code-file)
-  (demo-it-start-shell)
-  (demo-it-run-in-shell "rvm jruby-9.1")
+(defun rubyconf/rvm-switch-to (ruby-version)
+  (demo-it-run-in-shell (concat "rvm " ruby-version ))
   (comint-clear-buffer)
   (sit-for 0.3)
   (comint-clear-buffer)
+  )
+
+(defun rubyconf/run-file-with-older-mri (source-code-file)
+  (demo-it-start-shell)
+  (rubyconf/rvm-switch-to "2.3")
+  (comint-clear-buffer)
+  (sit-for 0.1)
+  (comint-clear-buffer)
+  (rubyconf/run-file-in-opened-shell "ruby" source-code-file)
+  )
+
+(defun rubyconf/run-file-with-jruby (source-code-file)
+  (demo-it-start-shell)
+  (rubyconf/rvm-switch-to "jruby-9.1")
   (demo-it-run-in-shell (concat "jruby " source-code-file))
 )
 
 (defun rubyconf/restore-default-ruby()
-  (demo-it-start-shell)
-  (demo-it-run-in-shell "rvm 3.2")
-  (comint-clear-buffer)
-  (sit-for 0.3)
-  (comint-clear-buffer)
+  (rubyconf/rvm-switch-to "3.2")
+  (delete-window)
+  (demo-it-step)
 )
 
 (demo-it-create :single-window
@@ -143,6 +154,7 @@
                 (rubyconf/show-source-code-file-and-warn-on-narrow "5-0-gil-protects-pushing-to-array.rb")
                 (demo-it-highlight-dwim :line 6 6)
                 (rubyconf/run-file-with-mri "5-0-gil-protects-pushing-to-array.rb")
+                (delete-window)
                 (rubyconf/run-file-with-jruby "5-0-gil-protects-pushing-to-array.rb")
                 (rubyconf/restore-default-ruby)
 
@@ -164,7 +176,7 @@
                 (rubyconf/run-file-with-mri "7-1-unpredictable-context-switching-if-true.rb")
                 (rubyconf/show-source-code-file-and-narrow "7-1-unpredictable-context-switching-if-true.rb" 7 7)
                 (rubyconf/show-source-code-file-and-narrow "7-2-unpredictable-context-switching-unless-false.rb" 7 7)
-                (rubyconf/run-file-with-mri "7-2-unpredictable-context-switching-unless-false.rb")
+                (rubyconf/run-file-with-older-mri "7-2-unpredictable-context-switching-unless-false.rb")
                 (rubyconf/show-image-slide "assume-context-can-be-switched-at-any-line.png")
 
                 ;; Ractors
@@ -174,10 +186,6 @@
                 ;; -- 9 Take home slides
                 (rubyconf/show-image-slide "there-will-never-be-a-magic-bullet.png")
 
-                ;; -- 10 TL;DR and end
-                (rubyconf/show-image-slide "tl-dr.png")
-
-                (rubyconf/show-image-slide "title.png")
                 )
 
 (demo-it-start)
