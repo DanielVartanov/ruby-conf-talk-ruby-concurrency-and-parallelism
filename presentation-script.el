@@ -135,11 +135,7 @@
 
                 ;; -- 3 Step aside: only one core --
                 (rubyconf/show-source-code-file "3-0-only-one-core.rb" 3)
-                (rubyconf/run-file-with-mri "3-0-only-one-core.rb")
-                (demo-it-run-in-shell "sudo ./turn-off-all-but-one-cores")
                 (demo-it-run-in-shell "nproc")
-                (rubyconf/run-file-in-opened-shell "ruby" "3-0-only-one-core.rb")
-                (demo-it-run-in-shell "sudo ./turn-on-all-cores && nproc")
 
                 ;; -- 4 Parallelism is not concurrency --
                 (rubyconf/show-image-slide "4-0-parallelism-is-not-concurrency.png")
@@ -149,7 +145,6 @@
                 (rubyconf/show-image-slide "concurrent-but-not-parallel.png")
 
                 (rubyconf/show-image-slide "the-moment-where-mri-switched-between-threads.png")
-                ;; speaker note: because second core is irrelevant
                 (rubyconf/show-source-code-file-and-warn-on-narrow "4-1-switching-context-at-method-boundary.rb" 3)
                 (demo-it-highlight-dwim :line 14 16)
 
@@ -182,13 +177,12 @@
                 (rubyconf/run-file-with-older-mri "7-2-unpredictable-context-switching-unless-false.rb")
                 (rubyconf/show-image-slide "assume-context-can-be-switched-at-any-line.png")
 
-                ;; Ractors
-
-                ;; M:N Ractors mapping
+                ;; -- 8 Ractors
+                (rubyconf/show-image-slide "ruby-3-3-0-release-notes.png")
+                (rubyconf/show-image-slide "koichi-ticket.png")
 
                 ;; -- 9 Take home slides
                 (rubyconf/show-image-slide "there-will-never-be-a-magic-bullet.png")
-
 
                 ;; -- Contact details
                 (rubyconf/show-image-slide "contact.png")
