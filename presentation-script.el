@@ -178,11 +178,11 @@
                 (rubyconf/show-image-slide "assume-context-can-be-switched-at-any-line.png")
 
                 ;; -- 8 Ractors
+                (rubyconf/show-source-code-file "8-0-ractors.rb" 2)
+                (rubyconf/show-source-code-file "8-1-ractor-sharable.rb")
+                (rubyconf/show-image-slide "there-will-never-be-a-magic-bullet.png")
                 (rubyconf/show-image-slide "ruby-3-3-0-release-notes.png")
                 (rubyconf/show-image-slide "koichi-ticket.png")
-
-                ;; -- 9 Take home slides
-                (rubyconf/show-image-slide "there-will-never-be-a-magic-bullet.png")
 
                 ;; -- Contact details
                 (rubyconf/show-image-slide "contact.png")
